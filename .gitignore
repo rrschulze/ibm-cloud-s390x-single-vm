@@ -1,0 +1,11 @@
+
+terraform/.DS_Store
+terraform/.terraform.lock.hcl
+terraform/.terraform/providers/registry.terraform.io/ibm-cloud/ibm/1.59.1/darwin_arm64/CHANGELOG.md
+terraform/.terraform/providers/registry.terraform.io/ibm-cloud/ibm/1.59.1/darwin_arm64/LICENSE
+terraform/.terraform/providers/registry.terraform.io/ibm-cloud/ibm/1.59.1/darwin_arm64/NOTICE
+terraform/.terraform/providers/registry.terraform.io/ibm-cloud/ibm/1.59.1/darwin_arm64/provider_metadata.json
+terraform/.terraform/providers/registry.terraform.io/ibm-cloud/ibm/1.59.1/darwin_arm64/README.md
+terraform/.terraform/providers/registry.terraform.io/ibm-cloud/ibm/1.59.1/darwin_arm64/terraform-provider-ibm_v1.59.1
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup

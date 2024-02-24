@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+#install git, make and gcc
+apt update
+apt -y install git
+apt -y install make
+apt -y install gcc
+apt -y install maven
+
+
+#install docker and docker compose
+#apt-get remove docker docker-engine docker.io containerd runc
+apt-get update
+apt-get -y install ca-certificates curl gnupg lsb-release
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt update
+apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+#create user labuser
+adduser --disabled-password --gecos "" labuser 
+usermod -aG sudo labuser
+echo 'labuser  ALL= NOPASSWD: /usr/bin/add-apt-repository, /usr/bin/apt, /usr/bin/snap, /usr/bin/docker, /usr/bin/update-alternatives, /usr/bin/python, /usr/local/bin/pip' | sudo EDITOR='tee -a' visudo
+mkdir /home/labuser/.ssh
+cp /root/.ssh/authorized_keys /home/labuser/.ssh/authorized_keys
+chown labuser -R /home/labuser/.ssh/
+chgrp labuser -R /home/labuser/.ssh/
+chmod 700 /home/labuser/.ssh
+chmod 600 /home/labuser/.ssh/authorized_keys
+
+#install tools
+apt -y install vim
