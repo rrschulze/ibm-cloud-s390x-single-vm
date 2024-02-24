@@ -15,9 +15,8 @@ On your local device, run the following commands in a terminal window:
 
 
 # Run observability tools
-
 To install prometheus, jaeger, loki and grafana, perform these steps:
-1. `git clone https://github.com:/rrschulze/ibm-cloud-s390x-single-vm.git`
+1. `git clone https://github.com/rrschulze/ibm-cloud-s390x-single-vm`
 2. `cd ibm-cloud-s390x-single-vm/tools`
 3. `sudo docker compose up -d`
 4. Verify containers are up with `sudo docker ps`
