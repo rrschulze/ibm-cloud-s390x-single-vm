@@ -8,7 +8,7 @@ services:
       - 14318:4318
       - 16686:16686
     networks:
-      - nw-lab
+      - nw-lab001
     environment:
       - COLLECTOR_OTLP_ENABLED=true=value
   prometheus-service:
@@ -21,8 +21,10 @@ services:
       - "--enable-feature=otlp-write-receivere"
     ports:
       - 9090:9090
+      - 24317:4317
+      - 24318:4318     
     networks:
-      - nw-lab
+      - nw-lab001
   grafana-service:
     image: ubuntu/grafana:8.2-22.04_beta
     container_name: grafana
@@ -31,7 +33,7 @@ services:
     volumes:
       - ./config/grafana/provisioning:/etc/grafana/provisioning
     networks:
-      - nw-lab
+      - nw-lab001
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ORG_ROLE=Editor
@@ -47,6 +49,9 @@ services:
     command: 
       -config.file=/etc/loki/config.yaml
     networks:
-      - nw-lab
+      - nw-lab001
 networks:
   nw-lab001:
+    name: lab-network
+    external: true
+

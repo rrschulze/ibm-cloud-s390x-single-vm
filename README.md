@@ -20,3 +20,8 @@ To install prometheus, jaeger, loki and grafana, perform these steps:
 2. `cd ibm-cloud-s390x-single-vm/tools`
 3. `sudo docker compose up -d`
 4. Verify containers are up with `sudo docker ps`
+
+# Access observability tools
+1. Jaeger UI: `https://<ipv4_address>:16686/`
+2. Prometheus UI: `https://<ipv4_address>:9090/`
+3. Grafana UI: `https://<ipv4_address>:3000/`
