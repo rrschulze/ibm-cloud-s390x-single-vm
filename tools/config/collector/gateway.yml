@@ -8,22 +8,12 @@ receivers:
       http:
 processors:
   batch:
-  attributes:
-    actions:
-      - action: insert
-        key: loki.attribute.labels
-        value: event.domain, event.name
-  resource:
-    attributes:
-      - action: insert
-        key: loki.resource.labels
-        value: service.name, service.namespace
 exporters:
   otlp/1:
     endpoint: jaeger-service:24317
     tls:
       insecure: true
-  otlp/2:
+  otlphttp:
     endpoint: prometheus-service:34317
     tls:
       insecure: true
@@ -34,12 +24,12 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]      
-      exporters: [otlp/1]
+      exporters: [otlphttp]
     metrics:
       receivers: [otlp]
       processors: [batch]
       exporters: [otlp/2]
     logs:
       receivers: [otlp]
-      processors: [batch, attributes, resource]      
+      processors: [batch]      
       exporters: [loki]
