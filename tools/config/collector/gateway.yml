@@ -10,21 +10,21 @@ processors:
   batch:
 exporters:
   otlp/1:
-    endpoint: jaeger-service:24317
+    endpoint: vsi-s390x-01:24317
     tls:
       insecure: true
-  otlphttp:
-    endpoint: prometheus-service:34317
+  otlp/2:
+    endpoint: vsi-s390x-01:34317
     tls:
       insecure: true
   loki:
-    endpoint: http://loki-service:3100/loki/api/v1/push
+    endpoint: http://vsi-s390x-01:3100/loki/api/v1/push
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors: [batch]      
-      exporters: [otlphttp]
+      exporters: [otlp/1]
     metrics:
       receivers: [otlp]
       processors: [batch]

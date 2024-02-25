@@ -20,7 +20,7 @@ receivers:
 
 exporters:
   otlp:
-    endpoint: collector-gateway-service:14317
+    endpoint: vsi-s390x-01:14317
     tls:
       insecure: true
 service:
