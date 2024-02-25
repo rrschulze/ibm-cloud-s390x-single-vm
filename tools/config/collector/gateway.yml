@@ -1,0 +1,46 @@
+# Learn more about the OpenTelemetry Collector via
+# https://opentelemetry.io/docs/collector/
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+processors:
+  batch:
+exporters:
+  otlp/1:
+    endpoint: localhost:14317
+    tls:
+      insecure: true
+  otlp/2:
+    endpoint: localhost:24317
+    tls:
+      insecure: true
+  loki:
+    endpoint: http://localhost:3100/loki/api/v1/push
+    labels:
+      resource:
+        telemetry.sdk.language: "telemetry_sdk_language"
+        telemetry.sdk.name: "telemetry_sdk_name"
+        telemetry.sdk.version: "telemetry_sdk_version"
+        net.host.name: "net_host_name"
+        net.host.ip: "net_host_ip"
+        service.name: "job"
+        severity: "severity"
+      attributes:
+        severity: ""
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]      
+      exporters: [otlp/2]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/1]
+    logs:
+      receivers: [otlp]
+      processors: [batch]      
+      exporters: [loki]

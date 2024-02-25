@@ -6,8 +6,10 @@ apt update
 apt -y install git
 apt -y install make
 apt -y install gcc
+apt -y install g++
+apt -y install build-essential
 apt -y install maven
-
+apt -y install cmake
 
 #install docker and docker compose
 #apt-get remove docker docker-engine docker.io containerd runc
@@ -20,6 +22,22 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt update
 apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# requirements for building open-telemetry-cpp
+apt -y install libprotobuf-dev protobuf-compiler
+apt -y install curl
+apt -y install libcurl4-openssl-dev
+
+apt -y install libgtest-dev
+cd /usr/src/googletest
+cmake .
+cmake --build . --target install
+
+git clone https://github.com/google/benchmark.git
+mkdir benchmark-build
+cd benchmark-build
+cmake -DCMAKE_INSTALL_PREFIX=$(pwd)/../benchmark-install ../benchmark
+make install
 
 #create user labuser
 adduser --disabled-password --gecos "" labuser 
