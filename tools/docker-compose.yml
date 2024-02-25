@@ -17,11 +17,9 @@ services:
       - ./config/prometheus/config.yml/:/etc/prometheus/prometheus.yml
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
-      - "--enable-feature=otlp-write-receiver"
+      - "--enable-feature=exemplar-storage"
     ports:
       - 9090:9090
-      - 34317:4317  
-      - 34318:4318
     networks:
       - nw-lab001
   grafana-service:

@@ -13,10 +13,10 @@ exporters:
     endpoint: vsi-s390x-01:24317
     tls:
       insecure: true
-  otlp/2:
-    endpoint: vsi-s390x-01:34317
-    tls:
-      insecure: true
+  prometheus:
+    endpoint: vsi-s390x-01:8889
+    resource_to_telemetry_conversion:
+      enabled: true
   loki:
     endpoint: http://vsi-s390x-01:3100/loki/api/v1/push
 service:
@@ -28,7 +28,7 @@ service:
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/2]
+      exporters: [prometheus]
     logs:
       receivers: [otlp]
       processors: [batch]      
