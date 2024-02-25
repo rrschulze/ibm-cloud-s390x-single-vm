@@ -5,7 +5,6 @@ services:
     container_name: jaeger
     ports:
       - 24317:4317
-      - 24318:4318
       - 16686:16686
     networks:
       - nw-lab001
@@ -21,8 +20,7 @@ services:
       - "--enable-feature=otlp-write-receivere"
     ports:
       - 9090:9090
-      - 34317:4317
-      - 34318:4318     
+      - 34317:4317   
     networks:
       - nw-lab001
   grafana-service:
@@ -55,7 +53,6 @@ services:
     container_name: collector-gateway
     ports: 
       - 14317:4317
-      - 14318:4318
       - 8888:8888 # Prometheus metrics exposed by the Collector
     volumes:
       - ./config/collector/gateway.yml:/etc/otelcol-contrib/config.yaml
@@ -65,14 +62,12 @@ services:
     image: otel/opentelemetry-collector-contrib:latest
     container_name: collector-agent
     ports: 
-      - 14317:4317
-      - 14318:4318
+      - 4317:4317
+      - 4318:4318
     volumes:
       - ./config/collector/agent.yml:/etc/otelcol-contrib/config.yaml
     networks:
       - nw-lab001
 networks:
   nw-lab001:
-    name: lab-network
-    external: true
 
