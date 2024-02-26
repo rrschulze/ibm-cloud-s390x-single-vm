@@ -33,6 +33,7 @@ services:
       - 3000:3000
     volumes:
       - ./config/grafana/provisioning:/etc/grafana/provisioning
+      - ./config/grafana/dashboards:/etc/grafana/dashboards
     networks:
       - nw-lab001
     environment:
@@ -61,6 +62,7 @@ services:
     ports: 
       - 14317:4317
       - 8888:8888 # Prometheus metrics exposed by the Collector
+      - 8889:8889 # Prometheus exporter
     volumes:
       - ./config/collector/gateway.yml:/etc/otelcol-contrib/config.yaml
     networks:

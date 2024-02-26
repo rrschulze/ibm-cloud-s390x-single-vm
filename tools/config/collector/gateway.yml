@@ -14,7 +14,7 @@ exporters:
     tls:
       insecure: true
   prometheus:
-    endpoint: vsi-s390x-01:8889
+    endpoint: 0.0.0.0:8889
     resource_to_telemetry_conversion:
       enabled: true
   loki:
