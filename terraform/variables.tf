@@ -1,7 +1,7 @@
 variable id {
   description = "Lab id"
   type        = string
-  default     = "tmyssgb0kt"
+  default     = "ngvpdfagvoiesa"
 }
 
 variable ibmcloud_api_key {
@@ -60,7 +60,7 @@ variable subnet_ip_range {
 variable s390x_image {
   description = "s390x image name "
   type        = string
-  default     = "ibm-ubuntu-22-04-3-minimal-s390x-1"
+  default     = "ibm-ubuntu-22-04-4-minimal-s390x-3"
 }
 
 variable s390x_machine_type {
